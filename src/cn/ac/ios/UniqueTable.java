@@ -13,4 +13,5 @@ public interface UniqueTable {
 	public int getId(int var, int left, int right);
 	public Node getNodeById(int id);
 	public Node insertNode(int var, int left, int right);
+	public int getRealNodeNum();
 }

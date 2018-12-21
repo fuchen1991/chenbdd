@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class BDD {
-	private UniqueTable unique;
+	UniqueTable unique;
 	private CacheTable cache;
 	private int zeroId = -1;
 	private int oneId = -1;
@@ -24,6 +24,7 @@ public class BDD {
 	{
 		//unique = new UniqueTableArray(nodeSize, varSize+1);
 		unique = new UniqueTableMap(nodeSize);
+		//unique = new UniqueTableSelfMap(nodeSize);
 		cache = new CacheTable();
 		zero = createZero();
 		one = createOne();
@@ -68,11 +69,11 @@ public class BDD {
 		String key = "";
 		if(op == OperationType.AND)
 			key = "and_";
-		if(op == OperationType.OR)
+		else if(op == OperationType.OR)
 			key = "or_";
-		if(op == OperationType.XOR)
+		else if(op == OperationType.XOR)
 			key = "xor_";
-		if(op == OperationType.NAND)
+		else// if(op == OperationType.NAND)
 			key = "nand_";
 		key = key + node1.getId() + "_" + node2.getId();
 
@@ -92,7 +93,7 @@ public class BDD {
 			if(node1.equals(node2))
 				return node1;
 		}
-		if(op == OperationType.OR)
+		else if(op == OperationType.OR)
 		{
 			if(node1.isOne())
 				return node1;
@@ -105,7 +106,7 @@ public class BDD {
 			if(node1.equals(node2))
 				return node1;
 		}
-		if(op == OperationType.XOR)
+		else if(op == OperationType.XOR)
 		{
 			if(node1.isZero())
 				return node2;
@@ -114,7 +115,7 @@ public class BDD {
 			if(node1.equals(node2))
 				return zero;
 		}
-		if(op == OperationType.NAND)
+		else// if(op == OperationType.NAND)
 		{
 			if(node1.isOne() && node2.isOne())
 				return zero;

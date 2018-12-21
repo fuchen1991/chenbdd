@@ -54,11 +54,6 @@ public class UniqueTableMap implements UniqueTable{
 		return this.unique.get(triple);
 	}
 	
-	public int getSize()
-	{
-		return this.size;
-	}
-	
 	public Node getNodeById(int id)
 	{
 		return nodes[id];
@@ -76,6 +71,11 @@ public class UniqueTableMap implements UniqueTable{
 		currentId++;
 		return node;
 	}
+
+	@Override
+	public int getRealNodeNum() {
+		return unique.size();
+	}
 }
 
 class Triple {
@@ -88,6 +88,34 @@ class Triple {
 		this.var = var;
 		this.left = left;
 		this.right = right;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + left;
+		result = prime * result + right;
+		result = prime * result + var;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Triple other = (Triple) obj;
+		if (left != other.left)
+			return false;
+		if (right != other.right)
+			return false;
+		if (var != other.var)
+			return false;
+		return true;
 	}
 
 	

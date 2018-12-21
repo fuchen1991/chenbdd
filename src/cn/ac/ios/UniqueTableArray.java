@@ -86,6 +86,12 @@ public class UniqueTableArray implements UniqueTable{
 		currentId++;
 		return node;
 	}
+
+	@Override
+	public int getRealNodeNum() {
+		// TODO Auto-generated method stub
+		return nodeSize;
+	}
 	
 	
 	

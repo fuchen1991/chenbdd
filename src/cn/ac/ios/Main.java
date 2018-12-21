@@ -12,15 +12,19 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		long start = System.currentTimeMillis();
-		System.out.println(NQueens(9));
-		long end = System.currentTimeMillis();
-		System.out.println("Time: " + (end - start) + "ms" );
+		for(int i=1;i<=10;i++)
+		{
+			long start = System.currentTimeMillis();
+			System.out.println(i + " queens: " + NQueens(i));
+			long end = System.currentTimeMillis();
+			System.out.println("Time: " + (end - start) + "ms");
+		}
+		
 	}
 
 	public static int NQueens(int N)
 	{
-		BDD bdd = new BDD(N*N*N, N*N, 0);
+		BDD bdd = new BDD(N*N*N*N, N*N, 0);
 		Node[][] X = new Node[N][N];
 		
 		Node queen = bdd.one();
@@ -97,16 +101,6 @@ public class Main {
 		return res;
 	}
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
